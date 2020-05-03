@@ -1,0 +1,88 @@
+
+#login-form-container{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 10vw;
+    height: 20vw;
+    display: grid;
+    flex-flow: row wrap;
+}
+mat-form-field{
+    font-size: 2vw;
+}  
+
+input[type="text"] {
+    font-size: 1.4vw;   
+}
+
+#login-button{   
+    justify-self:  center;
+    width: 12vw;
+    height: 4vw;
+    font-size: 1.5vw; 
+    background-color: var(--main-color);
+}
+
+
+/**
+ *  Estilo Tablets y IPad
+ **/
+ @media only screen and (max-width: 992px) {
+
+    #login-form-container {
+        width: 40%;
+        margin-left: 30%;
+        margin-top: 5vw;
+        display: grid;
+        flex-flow: row wrap;
+    }
+    
+    input[type="text"] {
+        font-size: 4vw;   
+    }
+    
+    #login-button{   
+        justify-self:  center;
+        margin-top: 5vw;
+        width: 20vw;
+        height: 6vw;
+      
+    }
+
+}
+
+  
+/**
+ *  Estilo Smartphone
+ **/
+@media only screen and (max-width: 768px) {
+
+    #login-form-container {
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 20vw;
+        display: grid;
+        flex-flow: row wrap;
+    }
+
+    mat-form-field{
+        margin-top: 20vw;
+        font-size: 5vw;
+    }  
+
+    input[type="text"] {
+        font-size: 4vw;   
+    }
+    
+    #login-button{   
+        justify-self:  center;
+        margin-top: 20vw;
+        width: 30vw;
+        height: 10vw;
+        font-size: 4vw; 
+       
+    }
+
+}
+
+

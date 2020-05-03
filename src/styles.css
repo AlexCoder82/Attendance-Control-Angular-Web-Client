@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* VARIABLES */
+:root {
+    --main-color: rgb(118, 1, 12);
+    --input-bg-color: rgb(204, 199, 199);
+    --input-text-color:rgb(17, 17, 25);
+    --error-message-color: rgb(218, 10, 10);
+  }
+
+/* ESTILO DE ETIQUETAS */
+
+button{
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-left: 0.5em;
+  padding:0.5em 1em 0.5em 1em;
+  font-size: 0.9em;   
+  border-radius: 0.5em;
+  height: 4vw;
+}
+
+button:hover{
+  cursor:pointer ;
+  box-shadow: 0 5px #666;
+  transform: translateY(1px);
+  color: rgb(17, 17, 25);
+  font-weight: bold;
+  
+}
+
+/* CLASES */
+
+
+/* FORMULARIOS ANGULAR MATERIAL */
+
+input[type="text"],input[type="password"], select {
+  color:var(--input-text-color); 
+  font-weight: bold;
+}
+
+.label{
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+/* Color del label */
+.mat-form-field-label{
+  color: var(--main-color) !important;
+  font-weight: bold  !important;
+
+}
+/* Color del select */
+.mat-select-value-text{
+  color: var(--input-text-color) !important;
+  font-weight: bold  !important;
+}
+
+/* Color de la linea */
+.mat-form-field-underline{
+  background-color:var(--main-color) !important;
+}
+/* Color de la linea cuando tiene el focus */
+.mat-form-field-ripple {
+  background-color:var(--input-text-color) !important;
+  
+}
+/* Color del texto introducido */
+
+/* Color del label en caso de error*/
+.mat-form-field.mat-form-field-invalid .mat-form-field-label{
+  color: var(--error-message-color) !important;
+  font-weight: bold;
+}
+/* Mensaje de error especifico */
+mat-error {
+  color:var(--error-message-color) !important;
+  font-weight: bold;
+  font-size:  1.2vw;
+}
+/* Color de la linea en caso de error */
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color:var(--error-message-color) !important;
+ 
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--main-color) !important;
+}
+
+.mat-dialog-container {
+  overflow: hidden !important;
+  border-radius: 5px !important;
+  padding: 0px !important;
+}
+
+/* OTRAS CLASES */ 
+.error-message{
+  color:var(--error-message-color);
+  font-weight: bold;
+}
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

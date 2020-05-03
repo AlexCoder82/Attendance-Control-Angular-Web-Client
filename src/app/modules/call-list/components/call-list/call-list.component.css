@@ -1,0 +1,152 @@
+#main-container{
+    width: 80%;
+    margin-left:10%;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+#message{   
+    font-size: 20px;   
+}
+
+table{ 
+    margin-top: 20px;
+    width: 100%; 
+    display: block;
+}
+thead{
+    width: 100%;
+    display:block;
+    position:relative;
+    overflow-y: scroll;
+}
+tbody{
+    width: 100%;
+    display: block;
+    position:relative;
+    height: 250px;
+    overflow-y: scroll;
+}
+tr{    
+    
+    width: 100%;
+    display:flex;
+    background: #FFF; 
+}
+
+tr:nth-child(even) {background: #CCC}
+
+
+th{
+    height: 50px;
+    font-size: 18px;
+    color: var(--main-color);
+    display: block;
+    text-align: left;
+}
+
+.dni-col{    
+    flex-basis:15%; 
+}
+
+.firstname-col{
+
+    flex-basis:25%;
+}
+.lastname-col{
+    flex-basis:35%;
+}
+.mobil-name-col{
+    display: none;
+}
+.checkbox-col{
+    flex-basis:12%;
+    justify-self: center;
+    text-align: center;
+}
+td>div{
+    text-align: center;
+}
+
+#button-container{
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+}
+button{
+    width: 80px;
+    height: 40px;
+    font-size: 15px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+    #main-container{
+        width: 96%;
+        margin-left:2%;
+        margin-top: 30px;
+    }
+    
+    #message{   
+        font-size: 18px;   
+    }
+    
+    table{
+        float: left;
+        height: auto;
+        display: initial;
+    }
+    thead{
+        display:initial;
+        position:initial; 
+        overflow-y: initial;
+    }
+
+    tbody{
+        display:initial;
+        position:initial;
+        overflow-y: initial;
+    }
+   
+    th{
+        height: 50px;
+        font-size: 13px;
+        display: initial;
+    }
+    td{
+        font-size: 12px; 
+    } 
+    
+    .dni-col{    
+        flex-basis:20%; 
+    }
+    
+    .firstname-col{
+        display: none;
+    }
+    .lastname-col{
+        display: none;
+    }
+    .mobil-name-col{
+        flex-basis: 40%;
+        display: inherit;
+    }
+    .checkbox-col{
+        flex-basis:20%;
+        justify-self: center;
+        
+    }
+
+ 
+    #button-container{
+        float: left;
+        margin-top: 40px;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 20px;
+    }
+  
+   
+}

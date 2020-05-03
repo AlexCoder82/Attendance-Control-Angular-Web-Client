@@ -1,0 +1,15 @@
+
+<!-- Contenedor del formulario-->
+<div id="login-form-container">
+
+    <!-- Formulario -->
+
+  <mat-form-field>
+    <mat-label>DNI:</mat-label>
+      <input type="text" matInput id="dni" name="dni" [(ngModel)]="dni">
+  </mat-form-field>
+  
+  <button id="login-button" (click)="login()">Conectarse</button>
+  <span class="error-message">{{errorMessage}}</span>
+
+</div>

@@ -1,0 +1,107 @@
+#main-container{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+#welcome-message{    
+    font-size: 20px;  
+}
+
+table{
+    margin-top: 15px;
+    width: 100%; 
+}
+
+tr{  
+    width: 100%;
+    background: #FFF; 
+}
+
+
+tr:nth-child(even) {background: #CCC}
+
+th{
+    height: 50px;
+    font-size: 18px;
+    color: var(--main-color);
+}
+
+#dni-col{
+    width: 15%;
+}
+
+#subject-col{
+    width: 60%;
+}
+
+#schedule-col{
+    width: 20%;  
+}
+
+td{
+    font-size: 15px;
+    text-align: center;
+    height: 40px;
+}
+
+#subject-td{
+    text-align: left;
+}
+
+a{
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+
+
+/* Estilo para smartphone orientación portrait */
+@media only screen and (max-width: 768px) {
+
+    #main-container{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 50px;  
+    }
+
+    #welcome-message{    
+        font-size: 15px;  
+    }
+    
+    th{
+        height: 40px;
+        font-size: 14px;  
+    }
+    td{
+        font-size: 12px;
+        height: 30px;
+    }
+  
+}
+
+/* Estilo para smartphone orientación landscape */
+@media only screen and (orientation:landscape) and (max-width: 768px) {
+
+    #main-container{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+   
+    }
+
+    #welcome-message{    
+        font-size: 17px;  
+    }
+    
+    th{
+        height: 30px;
+        font-size: 15px;  
+    }
+    td{
+        font-size: 12px;
+        height: 20px;
+    }
+  
+}

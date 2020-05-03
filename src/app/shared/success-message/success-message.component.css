@@ -1,0 +1,18 @@
+#dialog-container{
+    width: 45vw;
+    height: 10vw;
+    text-align: center;
+}
+
+#header{
+    width: 100%;
+    height: 4vw;
+    background-color: var(--main-color);
+}
+
+#success-message{
+    margin-top: 2vw;
+    color: var(--main-color);
+    font-size: 1.7vw;
+    font-weight: bold;
+}

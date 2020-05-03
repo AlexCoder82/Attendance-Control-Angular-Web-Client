@@ -1,0 +1,73 @@
+#container{
+    padding-top: 30px;
+    width: 100%;
+    height: 100px;
+    background-image: url('src\assets\logo-optima.png');
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+#sign-out{      
+    width: 85%;
+    text-align: right;
+}
+
+a{
+    font-weight: bold;
+    color:var(--main-color);
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 992px) {
+
+    #container{
+        padding-top: 20px;
+        background-size: 40%;     
+    }
+
+    #sign-out{      
+        width: 95%;
+    }
+   
+}
+
+@media only screen and (orientation: landscape) and (max-width: 992px) {
+    #container{
+        padding-top: 30px;
+        background-size: 40%;
+    }
+
+    #sign-out{      
+        width: 95%;
+    }
+    
+  }
+
+@media only screen and (max-width: 768px) {
+
+    #container{
+        padding-top: 30px;
+        background-size: 80%;
+    }
+
+    #sign-out{
+        
+        width: 90%;
+    }
+ 
+   
+}
+
+@media only screen and (orientation: landscape) and (max-width: 768px) {
+    #container{
+        padding-top: 30px;
+        background-size: 40%;
+    }
+
+    #sign-out{      
+        width: 95%;
+    }
+    
+  }

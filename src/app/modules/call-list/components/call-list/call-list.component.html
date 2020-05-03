@@ -1,0 +1,34 @@
+
+<div id="main-container">
+<span id="message">{{message}}</span>
+
+<table  *ngIf="callList" cellspacing="0">
+    <thead>
+        <tr>
+        <th class="dni-col">Dni</th>
+        <th class="firstname-col">Nombre</th>
+        <th class="lastname-col">Apellidos</th>
+        <th class="mobil-name-col">Nombre</th>
+        <th class="checkbox-col">Ausencia</th>
+        <th class="checkbox-col">Retraso</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="table-row" *ngFor="let schoolClassStudent of callList; let i = index">
+        <td class="dni-col">{{schoolClassStudent.student.dni}}</td>
+        <td class="firstname-col">{{schoolClassStudent.student.firstName}}</td>
+        <td class="lastname-col">{{schoolClassStudent.student.lastName1}} {{schoolClassStudent.student.lastName2}}</td>
+        <td class="mobil-name-col">
+            {{schoolClassStudent.student.firstName}}
+             {{schoolClassStudent.student.lastName1}}
+             {{schoolClassStudent.student.lastName2}}
+        </td>
+        <td class="checkbox-col"><div><input type="checkbox" id="is-missing" name="isMissing" (change)="onStudentMissingCheckedChange($event,i)" [checked]="isStudentMissing(i)" ></div></td>
+        <td class="checkbox-col"><div><input type="checkbox" id="has-delay" name="hasDelay"  [checked]="hasStudentDelay(i)" (change)="onStudentHasDelayCheckedChange($event,i)"></div></td>
+    </tr>
+</tbody>
+</table>
+<div id="button-container">
+    <button (click)="send()">Enviar</button>
+</div>
+</div>
