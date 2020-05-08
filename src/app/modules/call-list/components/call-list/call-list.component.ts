@@ -13,15 +13,14 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CallListComponent implements OnInit {
 
-  public schoolClassIds: number[];
-  public callList: SchoolClassStudent[];
-  public message:string;
-
+  public schoolClassIds: number[];//Arrays con los ids de las clases por curso
+  public callList: SchoolClassStudent[];//Listado de alumnos de la clase
+  public message: string;
 
   constructor(
     private sessionService: SessionService,
     private router: Router,
-    private matDialog:MatDialog) {
+    private matDialog: MatDialog) {
 
     //Recupero los ids de las clases en el session storage
     let params = sessionStorage.getItem("schoolClassIds");
@@ -36,47 +35,63 @@ export class CallListComponent implements OnInit {
 
   }
 
-  public setMessage(){
+  //Mensaje con el nombre de la asignatura y el horario
+  public setMessage() {
 
     let subject = sessionStorage.getItem("subject");
     let startAt = sessionStorage.getItem("startAt");
     this.message = "Classe de " + subject + " prevista a las " + startAt + ".";
+
   }
 
   //Función que retorna si un alumno es ausente o no, 
   //llamada automaticamente por el checkbox de ausencia a cada evento
-  public isStudentMissing(index): boolean {
+  public isStudentMissing(index: number): boolean {
 
     let studentIsmissing = false;
 
-    if (this.callList[index].absence != null && this.callList[index].absence.type == 0)
+    if (this.callList[index].absence != null
+      && this.callList[index].absence.type == 0)
+
       studentIsmissing = true;
 
     return studentIsmissing;
+
   }
 
   //Función que retorna si un alumno tiene retraso o no, 
   //llamada automaticamente por el checkbox de retraso a cada evento
   hasStudentDelay(index) {
+
     let studentHasDelay = false;
-    if (this.callList[index].absence != null && this.callList[index].absence.type == 1)
+
+    if (this.callList[index].absence != null
+      && this.callList[index].absence.type == 1)
+
       studentHasDelay = true;
+
     return studentHasDelay;
+
   }
 
   //Función llamada al pulsar el checkbox de ausencia
-  onStudentMissingCheckedChange(event, index) {
+  onStudentMissingCheckedChange(event: any, index) {
 
     //Si se checkea se crea la ausencia de tipo total (0)
     if (event.target.checked) {
-      if(this.callList[index].absence == null){
-        let absence = new Absence(); 
+
+      //Si no existia la ausencia, se crea una nueva
+      if (this.callList[index].absence == null) {
+
+        let absence = new Absence();
         this.callList[index].absence = absence;
+
       }
+
       this.callList[index].absence.type = 0;
-      
+
     }
-    //si se quita el check, la ausencia pasa a ser nula
+    //si se quita el check, la ausencia pasa a ser de tipo cancelada (2)
     else {
 
       this.callList[index].absence.type = 2;
@@ -85,61 +100,56 @@ export class CallListComponent implements OnInit {
   }
 
   //Función llamada al pulsar el checkbox de retraso
-  onStudentHasDelayCheckedChange(event, index) {
+  onStudentHasDelayCheckedChange(event, index: number) {
 
     //Si se checkea se crea la ausencia de tipo retraso (1)
     if (event.target.checked) {
-      if(this.callList[index].absence == null){
-        let absence = new Absence(); 
+
+      //Si no existia la ausencia, se crea una nueva
+      if (this.callList[index].absence == null) {
+
+        let absence = new Absence();
         this.callList[index].absence = absence;
+
       }
+
       this.callList[index].absence.type = 1;
-      
+
     }
-    //si se quita el check, la ausencia pasa a ser nula
+    //si se quita el check, la ausencia pasa a ser de tipo cancelada (2)
     else {
 
       this.callList[index].absence.type = 2;
+
     }
 
   }
 
   //Petición para el listado de alumnos que deben estar presentes en las classes
   public getCallList() {
-
+  
     this.sessionService.getCallList(this.schoolClassIds).subscribe(
       (res: SchoolClassStudent[]) => {
 
         this.callList = res;
-        console.log(this.callList);
 
-      },
-      err => {
-
-      }
+      }//Posible error del servidor manejado en el interceptor
     )
   }
 
-  public send(){
-    
-    this.callList.forEach(c=>{
-      console.log(c.absence.type)
-    });
-    this.sessionService.sendCallList(this.callList).subscribe(   
+  //Envia al cliente http la lista de alumnos
+  public send() {
+
+    this.sessionService.sendCallList(this.callList).subscribe(
       res => {
 
-        this.createSuccessMessageDialog("El listado de alumnos ha sido enviado con éxito.");
+        this.createSuccessMessageDialog("La lista de ausencias ha sido enviada.");
 
-      },
-      err => {
-
-      }
+      }//Posible error del servidor manejado en el interceptor
     )
   }
 
-  
-
-  //Crea un dialog con el mensaje de Ã©xito
+  //Crea un dialog con el mensaje de exito
   private createSuccessMessageDialog(successMessage: string) {
 
     var dialog = this.matDialog.open(SuccessMessageComponent, {
@@ -147,8 +157,9 @@ export class CallListComponent implements OnInit {
       disableClose: false
     });
 
+    //Al cerrarse el dialog, vuelve a la pagina del listado de clases
     dialog.afterClosed().subscribe(
-      success=>{
+      success => {
         this.router.navigate(["/classes"]);
       }
     );

@@ -1,3 +1,11 @@
+
+#loading-spinner{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);     
+}
+
 #main-container{
     width: 80%;
     margin-left:10%;
@@ -6,7 +14,7 @@
 }
 
 #message{   
-    font-size: 20px;   
+    font-size: 1.4em;   
 }
 
 table{ 
@@ -39,7 +47,7 @@ tr:nth-child(even) {background: #CCC}
 
 th{
     height: 50px;
-    font-size: 18px;
+    font-size: 1.2em;
     color: var(--main-color);
     display: block;
     text-align: left;
@@ -50,12 +58,13 @@ th{
 }
 
 .firstname-col{
-
     flex-basis:25%;
 }
+
 .lastname-col{
     flex-basis:35%;
 }
+
 .mobil-name-col{
     display: none;
 }
@@ -74,13 +83,13 @@ td>div{
     width: 100%;
 }
 button{
-    width: 80px;
+    width: 90px;
     height: 40px;
-    font-size: 15px;
+    font-size: 1.2em;
 }
 
 
-
+/* Estilo para SmartPhone orientacion portrait */
 @media only screen and (max-width: 768px) {
 
     #main-container{
@@ -90,7 +99,7 @@ button{
     }
     
     #message{   
-        font-size: 18px;   
+        font-size: 1.2em;   
     }
     
     table{
@@ -116,7 +125,7 @@ button{
         display: initial;
     }
     td{
-        font-size: 12px; 
+        font-size: 0.9em; 
     } 
     
     .dni-col{    
@@ -130,23 +139,19 @@ button{
         display: none;
     }
     .mobil-name-col{
-        flex-basis: 40%;
+        flex-basis: 45%;
         display: inherit;
     }
+
     .checkbox-col{
-        flex-basis:20%;
-        justify-self: center;
-        
+        flex-basis:15%;
+
     }
 
- 
     #button-container{
         float: left;
         margin-top: 40px;
-        text-align: center;
-        width: 100%;
         padding-bottom: 20px;
     }
-  
-   
+     
 }

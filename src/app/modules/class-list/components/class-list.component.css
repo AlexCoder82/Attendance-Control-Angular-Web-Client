@@ -6,7 +6,7 @@
 }
 
 #welcome-message{    
-    font-size: 20px;  
+    font-size: 1.3em;  
 }
 
 table{
@@ -16,38 +16,30 @@ table{
 
 tr{  
     width: 100%;
+    height: 40px;
     background: #FFF; 
 }
 
-
-tr:nth-child(even) {background: #CCC}
-
-th{
-    height: 50px;
-    font-size: 18px;
-    color: var(--main-color);
-}
-
-#dni-col{
-    width: 15%;
-}
-
-#subject-col{
-    width: 60%;
-}
-
-#schedule-col{
-    width: 20%;  
+tr:nth-child(even) {
+    background: #CCC
 }
 
 td{
-    font-size: 15px;
-    text-align: center;
-    height: 40px;
+    font-size: 1em;   
+}
+.subject-col{
+    width: 60%;
+    text-align: left;
 }
 
-#subject-td{
-    text-align: left;
+.schedule-col{
+    width: 15%;  
+    text-align: center;
+}
+
+.link-col{
+    width: 25%;
+    text-align: center;
 }
 
 a{
@@ -67,41 +59,11 @@ a{
     }
 
     #welcome-message{    
-        font-size: 15px;  
+        font-size: 1.2em;  
     }
-    
-    th{
-        height: 40px;
-        font-size: 14px;  
-    }
-    td{
-        font-size: 12px;
-        height: 30px;
+    tr{
+        height: 50px;
     }
   
 }
 
-/* Estilo para smartphone orientación landscape */
-@media only screen and (orientation:landscape) and (max-width: 768px) {
-
-    #main-container{
-        width: 90%;
-        margin-left: 5%;
-        margin-top: 20px;
-   
-    }
-
-    #welcome-message{    
-        font-size: 17px;  
-    }
-    
-    th{
-        height: 30px;
-        font-size: 15px;  
-    }
-    td{
-        font-size: 12px;
-        height: 20px;
-    }
-  
-}

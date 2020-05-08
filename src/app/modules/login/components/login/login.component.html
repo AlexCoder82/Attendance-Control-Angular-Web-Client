@@ -1,15 +1,26 @@
+<!-- Si la sesion esta cerrada, se muestra el formularo de login -->
+<div *ngIf="!(sessionIsOpened | async)" id="login-form-container">
 
-<!-- Contenedor del formulario-->
-<div id="login-form-container">
-
-    <!-- Formulario -->
+  <!-- Formulario -->
 
   <mat-form-field>
     <mat-label>DNI:</mat-label>
-      <input type="text" matInput id="dni" name="dni" [(ngModel)]="dni">
+    <input type="text" matInput id="dni" name="dni" [(ngModel)]="dni">
   </mat-form-field>
-  
-  <button id="login-button" (click)="login()">Conectarse</button>
-  <span class="error-message">{{errorMessage}}</span>
 
+  <button *ngIf="!waiting" id="login-button" (click)="login()">Conectarse</button>
+
+  <div *ngIf="waiting" id="loading-spinner" >
+    <app-loading-spinner [diameter]="40"></app-loading-spinner>
+</div>
+
+  <!-- Posible mensaje de error -->
+  <div id="error-message">{{errorMessage}}</div>
+</div>
+
+<!-- Si una sesion esta abierta se muestra el botón "Ver clases"-->
+<div *ngIf="(sessionIsOpened | async)" id="button-container">
+  <button id="show-school-classes-button" (click)="showSchoolClasses()">
+    Ver clases
+  </button>
 </div>

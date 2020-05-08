@@ -1,44 +1,42 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 /**
- *  Observables con el mensaje de error enviado por el interceptor
+ *  Observables con los mensajes de error devueltos por el interceptor
  */
 export class NotifyServerErrorService {
 
-
-  public notifyError401: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  public notifyError403: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  public notifyError500: BehaviorSubject<HttpErrorResponse> = new BehaviorSubject<HttpErrorResponse>(null);
+  //Guarda el codigo de error
   public notifyErrorStatus: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  
+  //Guarda el mensaje de error en caso de error 401
+  public notifyError401: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  //Guarda el mensaje de error en caso de error 403
+  public notifyError403: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
+  //Método para cambiar el codigo de error
   public onNotifyErrorStatus(status: number) {
 
     this.notifyErrorStatus.next(status);
 
   }
 
+  //Método para cambiar el mensaje de error
   public onNotifyError401(errorMessage: string) {
 
     this.notifyError401.next(errorMessage);
-    
+
   }
 
+  //Método para cambiar el mensaje de error
   public onNotifyError403(errorMessage: string) {
 
     this.notifyError403.next(errorMessage);
 
   }
 
-  public onNotifyError500(httpErrorResponse: HttpErrorResponse) {
-
-    this.notifyError500.next(httpErrorResponse);
-
-  }
-  
 }

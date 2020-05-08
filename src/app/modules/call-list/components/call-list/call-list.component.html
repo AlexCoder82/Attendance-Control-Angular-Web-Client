@@ -1,5 +1,13 @@
 
-<div id="main-container">
+
+<!-- Rueda de carga-->
+
+<div id="loading-spinner" *ngIf="callList == null">
+    <app-loading-spinner [diameter]="40"></app-loading-spinner>
+</div>
+
+
+<div *ngIf ="callList != null" id="main-container">
 <span id="message">{{message}}</span>
 
 <table  *ngIf="callList" cellspacing="0">

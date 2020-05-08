@@ -22,6 +22,7 @@ export class SessionService {
 
   public login(dni:string) {
 
+    console.log(this.API_URL)
     return this.httpClient.post(this.API_URL + "/teachers/sign-in/"+ dni, null );
 
   }

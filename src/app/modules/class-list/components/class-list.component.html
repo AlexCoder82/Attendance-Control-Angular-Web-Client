@@ -1,14 +1,16 @@
 <div id="main-container">
     <span id="welcome-message">{{welcomeMessage}}</span>
     <table id="table" cellspacing="0">
-        <tr>
-            <th id="subject-col">Asignatura</th>
-            <th id="schedule-col">Horarios</th>
-        </tr>
         <tr id="row" *ngFor="let schoolClass of teacherSchoolClasses ">
-            <td id="subject-td"> {{schoolClass.subject.name}}</td>
-            <td>{{schoolClass.schedule.start}} - {{schoolClass.schedule.end}}</td>      
-            <td><a (click)="getCallList(schoolClass)"><u>Pasar lista</u></a>
+            <td class="subject-td"> {{schoolClass.subject.name}}</td>
+            <td class="schedule-col" >
+                {{schoolClass.schedule.start}} - 
+                {{schoolClass.schedule.end}}
+            </td>      
+            <td class="link-col">
+                <a (click)="getCallList(schoolClass)">
+                    <u>Pasar lista</u>
+                </a>
             </td>
         </tr>
     </table>

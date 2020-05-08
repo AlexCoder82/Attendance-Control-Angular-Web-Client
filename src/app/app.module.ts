@@ -19,6 +19,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NotifyServerErrorService } from './shared/services/notify-server-error.service';
 import { ClassListModule } from './modules/class-list/class-list.module';
 import { CallListModule } from './modules/call-list/call-list.module';
+import { ErrorModule } from './modules/error/error.module';
+import { LoadingSpinnerModule } from './shared/modules/loading-spinner/loading-spinner.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -39,7 +41,9 @@ import { CallListModule } from './modules/call-list/call-list.module';
     AppRoutingModule,
     MatDialogModule,
     ClassListModule,
-    CallListModule
+    CallListModule,
+    ErrorModule,
+    LoadingSpinnerModule,
 
   ],
 

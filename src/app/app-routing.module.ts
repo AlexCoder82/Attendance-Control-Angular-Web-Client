@@ -4,6 +4,7 @@ import { LoginComponent } from './modules/login/components/login/login.component
 import { ClassListComponent } from './modules/class-list/components/class-list.component';
 import { CallListComponent } from './modules/call-list/components/call-list/call-list.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ErrorComponent } from './modules/error/components/error/error.component';
 
 
 //RUTAS
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: 'call-list',
     component: CallListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
   }
 ]
 

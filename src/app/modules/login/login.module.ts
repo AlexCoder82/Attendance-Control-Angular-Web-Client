@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {  MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {  MatDialogModule } from '@angular/material/dialog';
+import { LoadingSpinnerModule } from 'src/app/shared/modules/loading-spinner/loading-spinner.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    LoadingSpinnerModule
 
   ],
   exports: [LoginComponent]

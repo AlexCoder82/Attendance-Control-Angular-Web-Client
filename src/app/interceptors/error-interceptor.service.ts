@@ -8,7 +8,8 @@ import { SessionService } from '../http/session.service';
 
 
 /**
- * Intercepta todas las respuestas del servidor para tratar los errores 500
+ * Intercepta todas las respuestas del servidor para tratar los posibles errores 
+ * devueltos
  */
 @Injectable({
   providedIn: 'root'
@@ -18,36 +19,32 @@ export class ErrorInterceptorService {
   constructor(
     private router: Router,
     private notifyServerErrorService: NotifyServerErrorService,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService) {
 
+
+  }
+
+  //Intercepta todas las peticiones
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
 
 
     return next.handle(req).pipe(
       retry(0),
       catchError((httpErrorResponse: HttpErrorResponse) => {
-  
-        let errorMessage: string = httpErrorResponse.message;
 
+        //Notifico el codigo de error
         this.notifyServerErrorService.onNotifyErrorStatus(httpErrorResponse.status);
 
         //Si el servidor devuelve un error interno
-        if (httpErrorResponse.status === 500) {
-          this.handleError500(httpErrorResponse);
+        if (httpErrorResponse.status === 500 || httpErrorResponse.status === 0) {
+          this.handleError();
         }
-
-        // Si el servidor no responde
-        if (httpErrorResponse.status === 0) {
-          this.handleError0();
-        }
-
-        //Si se intenta acceder a un componente reservado a otro role
+        //Si se intenta acceder a una ruta prohibida
         if (httpErrorResponse.status === 403) {
           this.handleError403();
         }
 
-        //Si el servidor no reconoce el token 
+        //Si el servidor no reconoce el token de sesion
         if (httpErrorResponse.status === 401) {
           this.handleError401();
         }
@@ -60,19 +57,11 @@ export class ErrorInterceptorService {
 
   }
 
-  handleError500(httpErrorResponse: HttpErrorResponse) {
+  //En caso de error 500 o 0 se abre la pagina de error
+  handleError() {
 
-    //pagina de error 
     this.router.navigate(['/error']);
-    //notifico el error devuelto por el servidor
-    this.notifyServerErrorService.onNotifyError500(httpErrorResponse);
-
-  }
-
-  handleError0() {
-   
-    //pagina de error 
-    this.router.navigate(['/error']);
+  
   }
 
   //Trata el error 401
@@ -80,25 +69,27 @@ export class ErrorInterceptorService {
 
     let message: string;
     //cierra la session en el caso de que este abierta
-    let isSessionOpened = this.sessionService.isSessionOpened.asObservable()
-        if ( of(isSessionOpened)) {
-          this.sessionService.logout();
+    let isSessionOpened = this.sessionService.isSessionOpened.asObservable();
 
-          message = "La sessión ha expirado";
-          //envio el usuario/admin a la pagina principal
-          this.router.navigate(['/']);
-          //Guardo el mensaje en el servicio de errores para mostrarlo  
-          this.notifyServerErrorService.onNotifyError401(message);
-        }
-        else {
-          message = "Debes estar autenticado para acceder a este recurso";
-          //envio el usuario/admin a la pagina para registrarse 
-          this.router.navigate(['/']);
-          //notifico el error devuelto por el servidor    
-          this.notifyServerErrorService.onNotifyError403(message);
-        }
-      
-    
+    if (of(isSessionOpened)) {
+
+      this.sessionService.logout();
+
+      message = "La sessión ha expirado";
+      //Abre la página de inicio
+      this.router.navigate(['/']);
+      //Guardo el mensaje en el servicio de errores para mostrarlo en la pagina de inicio
+      this.notifyServerErrorService.onNotifyError401(message);
+    }
+    else {
+      message = "Debes estar autenticado para acceder a este recurso";
+      //envio el usuario/admin a la pagina para registrarse 
+      this.router.navigate(['/']);
+      //notifico el error devuelto por el servidor    
+      this.notifyServerErrorService.onNotifyError403(message);
+    }
+
+
 
   }
 
