@@ -60,13 +60,13 @@ export class LoginComponent implements OnInit {
   }
 
   //Evento al pulsar el botón de conexión
-  public login() {
+  public signIn() {
 
     //Reinicio el posible mensaje de error
     this.errorMessage = "";
     this.waiting = true;
   
-    this.sessionService.login(this.dni).subscribe(
+    this.sessionService.signIn(this.dni).subscribe(
       (res: any) => {
 
         //El profesor esta logeado   
@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit {
 
         //Guarda los datos devueltos por el servidor en el sessionstorage
         sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('role', res.role);
         sessionStorage.setItem('id', res.id);
         sessionStorage.setItem('name', res.firstName);
         sessionStorage.setItem("schoolClasses", JSON.stringify(res.schoolClasses));
@@ -92,12 +91,11 @@ export class LoginComponent implements OnInit {
       }
 
     );
-
     
   }
 
   //Envia a la pagina del listado de clases
   public showSchoolClasses() {
-    this.router.navigate(["classes"]);
+    this.router.navigate(["clases"]);
   }
 }

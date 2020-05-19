@@ -10,7 +10,8 @@ export class AuthGuard implements CanActivate {
 
 
   constructor(
-    private sessionService: SessionService, private router: Router) {
+    private sessionService: SessionService, 
+    private router: Router) {
 
   }
 
@@ -21,10 +22,8 @@ export class AuthGuard implements CanActivate {
       res => {
         if (res == false) {
           this.router.navigate(["/"]);
-
         }
       }
-
     )
 
     return this.sessionService.isSessionOpened;

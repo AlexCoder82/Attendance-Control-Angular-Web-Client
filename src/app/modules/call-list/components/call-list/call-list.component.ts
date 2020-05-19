@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from 'src/app/http/session.service';
 import { Router } from '@angular/router';
 import { SchoolClassStudent } from 'src/app/models/schoolClassStudent.model';
 import { Absence } from 'src/app/models/absence.model';
 import { SuccessMessageComponent } from 'src/app/shared/success-message/success-message.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CallListService } from 'src/app/http/call-list.service';
 
 @Component({
   selector: 'app-call-list',
@@ -18,7 +18,7 @@ export class CallListComponent implements OnInit {
   public message: string;
 
   constructor(
-    private sessionService: SessionService,
+    private callListService: CallListService,
     private router: Router,
     private matDialog: MatDialog) {
 
@@ -128,7 +128,7 @@ export class CallListComponent implements OnInit {
   //Petición para el listado de alumnos que deben estar presentes en las classes
   public getCallList() {
   
-    this.sessionService.getCallList(this.schoolClassIds).subscribe(
+    this.callListService.getCallList(this.schoolClassIds).subscribe(
       (res: SchoolClassStudent[]) => {
 
         this.callList = res;
@@ -140,7 +140,7 @@ export class CallListComponent implements OnInit {
   //Envia al cliente http la lista de alumnos
   public send() {
 
-    this.sessionService.sendCallList(this.callList).subscribe(
+    this.callListService.sendCallList(this.callList).subscribe(
       res => {
 
         this.createSuccessMessageDialog("La lista de ausencias ha sido enviada.");
@@ -160,7 +160,7 @@ export class CallListComponent implements OnInit {
     //Al cerrarse el dialog, vuelve a la pagina del listado de clases
     dialog.afterClosed().subscribe(
       success => {
-        this.router.navigate(["/classes"]);
+        this.router.navigate(["/clases"]);
       }
     );
 

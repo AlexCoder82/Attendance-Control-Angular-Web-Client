@@ -88,7 +88,7 @@ export class ClassListComponent implements OnInit {
       sessionStorage.setItem("startAt", schoolClass.schedule.start)
 
       //Abre la página con la lista de alumnos
-      this.router.navigate(['call-list']);
+      this.router.navigate(['listado']);
     }
     else {
       this.errorMessage = "Esta clase aún no ha empezado."

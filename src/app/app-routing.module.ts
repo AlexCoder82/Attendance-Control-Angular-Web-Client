@@ -12,20 +12,20 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/sign-in',
+    redirectTo: '/conexion',
     pathMatch: 'full'
   },
   {
-    path: 'sign-in',
+    path: 'conexion',
     component: LoginComponent
   },
   {
-    path: 'classes',
+    path: 'clases',
     component: ClassListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'call-list',
+    path: 'listado',
     component: CallListComponent,
     canActivate: [AuthGuard]
   },

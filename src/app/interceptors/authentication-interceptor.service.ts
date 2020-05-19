@@ -15,25 +15,20 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class AuthenticationInterceptorService {
 
-  constructor(
-    private router: Router,
-    private sessionService: SessionService,
-    private notifyServerErrorService: NotifyServerErrorService) { }
+  constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    //Agrego un header con la autorizacion antes de cada peticion al servidor 
+    //Agrega un header de autorizacion con el token a cada petición
     const token = sessionStorage.getItem('token');
     let request = req.clone({
       setHeaders: {
         Authorization: "Bearer " + token,
-
       }
     });
 
     return next.handle(request);
 
   }
-
 
 }

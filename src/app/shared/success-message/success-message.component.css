@@ -1,7 +1,10 @@
 #dialog-container{
     width: 300px;
-    height: 80px;
+    height: 50px;
     text-align: center;
+    display: flex;
+    align-items: center;
+  justify-content: center;
 }
 
 #header{
@@ -11,7 +14,7 @@
 }
 
 #success-message{
-    margin-top: 15px;
+    vertical-align: middle;
     color: var(--main-color);
     font-size: 1.2em;
     font-weight: bold;
