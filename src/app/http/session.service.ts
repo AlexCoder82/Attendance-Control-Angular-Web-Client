@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { SchoolClassStudent } from '../models/schoolClassStudent.model';
+import { ConfigService } from '../shared/services/config.service';
 
 
 @Injectable({
@@ -10,17 +9,27 @@ import { SchoolClassStudent } from '../models/schoolClassStudent.model';
 })
 export class SessionService {
 
-  private API_URL = environment.apiURL ;
+  private API_URL;
 
   public isSessionOpened: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private configService: ConfigService, private httpClient: HttpClient) {
+    this.configService.config.subscribe(
+      config => {
+        if (config != null){
+          this.API_URL = config.apiURL;
+        }
+          
 
-   }
+      }
+    );
 
-  public signIn(dni:string) {
+  }
 
-    return this.httpClient.post(this.API_URL + "/teachers/sign-in/" + dni, null );
+  public signIn(dni: string) {
+
+
+    return this.httpClient.post(this.API_URL + "/api/teachers/sign-in/" + dni, null);
 
   }
 

@@ -47,6 +47,12 @@ a{
     cursor: pointer;
 }
 
+#error-message{
+    color: var(--main-color);
+    text-align: center;
+    margin-top: 50px;
+}
+
 
 
 /* Estilo para smartphone orientación portrait */

@@ -26,12 +26,20 @@ export class CallListComponent implements OnInit {
     let params = sessionStorage.getItem("schoolClassIds");
     this.schoolClassIds = JSON.parse(params);
 
+
   }
 
   ngOnInit(): void {
 
-    this.setMessage();
-    this.getCallList();
+    this.callListService.onConfifRead.subscribe(
+      isRead => {
+        if (isRead) {
+          this.setMessage();
+          this.getCallList();
+        }
+      }
+    );
+
 
   }
 
@@ -127,7 +135,7 @@ export class CallListComponent implements OnInit {
 
   //Petición para el listado de alumnos que deben estar presentes en las classes
   public getCallList() {
-  
+
     this.callListService.getCallList(this.schoolClassIds).subscribe(
       (res: SchoolClassStudent[]) => {
 

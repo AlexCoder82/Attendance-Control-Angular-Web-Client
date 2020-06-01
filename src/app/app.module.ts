@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,16 @@ import { ClassListModule } from './modules/class-list/class-list.module';
 import { CallListModule } from './modules/call-list/call-list.module';
 import { ErrorModule } from './modules/error/error.module';
 import { LoadingSpinnerModule } from './shared/modules/loading-spinner/loading-spinner.module';
+import { ConfigService } from './shared/services/config.service';
+
+const appInitializerFn = (appConfig: ConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  }
+};
+
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -65,6 +75,12 @@ import { LoadingSpinnerModule } from './shared/modules/loading-spinner/loading-s
     {
       provide: MAT_DATE_LOCALE,
       useValue: 'es-ES'
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [ConfigService]
     }
   ],
 
